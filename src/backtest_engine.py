@@ -690,10 +690,6 @@ class EstrategiaML(Strategy):
         if (pd.isna(self.sma_20[-1]) or pd.isna(self.sma_50[-1]) or 
             pd.isna(self.rsi[-1]) or pd.isna(self.atr[-1])):
             return
-        
-        # Debug: Log a cada 100 candles
-        if len(self.data) % 100 == 0:
-            logger.info(f"Processando candle {len(self.data)}, preço: {self.data.Close[-1]:.2f}")
 
         try:
             # Coletar valores mais recentes dos indicadores
@@ -722,23 +718,14 @@ class EstrategiaML(Strategy):
             probabilidades = self.modelo.predict_proba(features_array)[0]
             confianca = max(probabilidades)
             
-            # Debug: Log predições importantes
-            if confianca >= self.confianca_minima:
-                logger.info(f"🎯 Candle {len(self.data)}: predição={predicao}, confiança={confianca:.3f}, posição={bool(self.position)}")
-            
             # Lógica de entrada - apenas se confiança for alta o suficiente
             if confianca >= self.confianca_minima:
                 if predicao == 1:  # Sinal de alta forte
                     if not self.position:  # Se não tem posição, compra
-                        logger.info(f"🟢 COMPRANDO no candle {len(self.data)}: preço={self.data.Close[-1]:.2f}")
                         self.buy(sl=self.data.Close[-1] * 0.92, tp=self.data.Close[-1] * 1.15)
                 elif predicao == 2:  # Sinal de baixa forte  
                     if self.position:  # Se tem posição comprada, vende
-                        logger.info(f"🔴 VENDENDO no candle {len(self.data)}: preço={self.data.Close[-1]:.2f}")
                         self.position.close()
-                    # Adicionar possibilidade de venda a descoberto
-                    # elif not self.position:  # Se não tem posição, vende a descoberto
-                    #     self.sell(sl=self.data.Close[-1] * 1.08, tp=self.data.Close[-1] * 0.85)
                     
         except Exception as e:
             # Log do erro mas continue o backtest
@@ -769,19 +756,19 @@ def executar_backtest_sem_lookahead(dados, modelo, ativo):
             logger.warning(f"Poucos dados para backtest: {len(dados_bt)}")
             return None
         
-        # Configurar estratégia
-        estrategia = EstrategiaML
+        # Configurar estratégia com modelo
+        class EstrategiaMLComModelo(EstrategiaML):
+            def init(self):
+                super().init()
+                self.modelo = modelo['modelo']
+                self.feature_names = modelo.get('feature_names', [])
+                self.dados_originais = dados  # Para acessar todas as colunas
         
         # Criar e executar backtest
-        bt = Backtest(dados_bt, estrategia, cash=10000, commission=0.001)
+        bt = Backtest(dados_bt, EstrategiaMLComModelo, cash=10000, commission=0.001)
         
-        # Executar com parâmetros do modelo
+        # Executar backtest
         resultado = bt.run()
-        
-        # Adicionar modelo à estratégia (hack para passar dados)
-        if hasattr(resultado._strategy, 'modelo'):
-            resultado._strategy.modelo = modelo['modelo']
-            resultado._strategy.feature_names = modelo.get('feature_names', [])
         
         # Salvar trades individuais (Prompt 4)
         try:
