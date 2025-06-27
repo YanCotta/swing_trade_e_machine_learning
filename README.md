@@ -1,6 +1,6 @@
 # Sistema de Trading com Machine Learning - Versão Profissional
 
-Este é um sistema completo de trading algorítmico que utiliza machine learning para identificar padrões de mercado e gerar sinais de compra/venda. O sistema foi desenvolvido com foco em **swing trading** utilizando análise técnica avançada e indicadores técnicos baseados na **Teoria de Elliot** 
+Este é um sistema completo de trading algorítmico que utiliza machine learning para identificar padrões de mercado e gerar sinais de compra/venda. O sistema foi desenvolvido com foco em **swing trading** utilizando análise técnica avançada e indicadores técnicos baseados na **Teoria de Ondas de Elliott** 
 
 Este projeto implementa estratégias de swing trading baseadas em **análise técnica quantitativa** e **machine learning**. A base científica inclui:
 
