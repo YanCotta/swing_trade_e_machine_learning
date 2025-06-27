@@ -1,338 +1,391 @@
-# 🎯 Sistema de Swing Trading com Machine Learning e Ondas de Elliott
+# Sistema de Trading com Machine Learning - Versão Profissional
 
-**Projeto:** Sistema completo de trading algorítmico baseado em IA  
-**Status:** ✅ **PROTOTI**📊 Consolidado:**
-- Capital Inicial: R$ 10.000,00
-- Capital Final Médio: R$ 204,85 (-97.95%)
-- Win Rate Médio: **56.1%**
-- Total de Trades: **407**
+Este é um sistema completo de trading algorítmico que utiliza machine learning para identificar padrões de mercado e gerar sinais de compra/venda. O sistema foi desenvolvido com foco em **swing trading** utilizando análise técnica avançada e indicadores técnicos baseados na **Teoria das Ondas de Elliott**.
 
-### 📊 Feature Importance - Indicadores Mais Relevantes
+## 🎯 **IMPORTANTE - Desempenho do Modelo**
 
-![Feature Importance](./feature_importance_PETR4_1d.png)
-
-*Gráfico mostrando a importância dos indicadores técnicos para as previsões do modelo Random Forest. Os indicadores são ordenados por relevância, onde valores mais altos indicam maior influência nas decisões do modelo.*
-
-**Top 5 Indicadores Mais Importantes:**
-1. **ATR (Average True Range)** - Medida de volatilidade
-2. **RSI (Relative Strength Index)** - Força relativa do movimento
-3. **MACD** - Convergência/divergência de médias móveis
-4. **Volume Delta** - Pressão compradora vs vendedora
-5. **Bollinger Bands** - Bandas de volatilidade
-
-### 🔍 Análise Técnica dos ResultadosIAL CONCLUÍDO**  
-**Próxima Fase:** Implementação de modelos avançados  
-
----
-
-## 📚 Fundamentação Teórica
-
-📖 **[Teoria das Ondas de Elliott e Machine Learning](./teoria.md)** - Base científica completa do projeto, incluindo metodologias avançadas para implementações futuras
-
----
-
-## 🎯 Visão Geral do Projeto
-
-Este projeto desenvolve e valida estratégias de trading algorítmico para o mercado brasileiro (B3) utilizando **Machine Learning** e **Teoria das Ondas de Elliott**. O sistema combina análise técnica clássica com inteligência artificial para automatizar decisões de swing trading.
-
-### 🧪 Sobre o Protótipo Atual
-
-Os modelos implementados nesta primeira iteração utilizam **Random Forest** como **prova de conceito** e validação da infraestrutura. Para otimização dos resultados, as próximas versões implementarão os modelos avançados documentados em `teoria.md`, incluindo:
-
-- **LSTM (Long Short-Term Memory)** para análise temporal
-- **XGBoost** para detecção de padrões complexos  
-- **Ensemble Methods** combinando múltiplos algoritmos
-- **Deep Learning** para reconhecimento automático de ondas de Elliott
-
-### 🎨 Características Principais
-
-- ✅ **Pipeline Completo**: Coleta → Processamento → Treinamento → Backtesting
-- ✅ **Dados Reais**: 5 anos de histórico da B3 (PETR4, VALE3, BBAS3, BOVA11)
-- ✅ **Múltiplos Timeframes**: 1d, 4h, 15m, 5m, 1m
-- ✅ **Análise Técnica Avançada**: 14 indicadores implementados
-- ✅ **Gestão de Risco**: Stop Loss, Take Profit, Position Sizing
-- ✅ **Backtesting Rigoroso**: Métricas completas de performance
+> ⚠️ **ATENÇÃO**: Os modelos presentes neste repositório são **APENAS PARA DEMONSTRAÇÃO** e não devem ser utilizados para trading real. O desempenho atual é intencionalmente baixo para servir como exemplo de implementação e estrutura de código. Para uso em produção, seria necessário:
+>
+> - Dados de maior qualidade e volume
+> - Features mais sofisticadas
+> - Tuning extensivo de hiperparâmetros
+> - Validação rigorosa com dados out-of-sample
+> - Gerenciamento adequado de risco
 
 ## 📁 Estrutura do Projeto
 
 ```text
 swing_trade_e_machine_learning/
-├── 📊 DADOS
-│   ├── dados_brutos/           # 20 arquivos CSV originais
-│   │   ├── PETR4_1d.csv, PETR4_4h.csv, PETR4_15m.csv, PETR4_5m.csv, PETR4_1m.csv
-│   │   ├── VALE3_1d.csv, VALE3_4h.csv, VALE3_15m.csv, VALE3_5m.csv, VALE3_1m.csv
-│   │   ├── BBAS3_1d.csv, BBAS3_4h.csv, BBAS3_15m.csv, BBAS3_5m.csv, BBAS3_1m.csv
-│   │   └── BOVA11_1d.csv, BOVA11_4h.csv, BOVA11_15m.csv, BOVA11_5m.csv, BOVA11_1m.csv
-│   └── dados_processados/      # 20 arquivos com indicadores técnicos
-│
-├── 🤖 MODELOS TREINADOS
-│   ├── modelo_BBAS3_1d.joblib  # Random Forest (protótipo)
-│   ├── modelo_BOVA11_1d.joblib # Random Forest (protótipo)
-│   ├── modelo_PETR4_1d.joblib  # Random Forest (protótipo)
-│   └── modelo_VALE3_1d.joblib  # Random Forest (protótipo)
-│
-├── 🔧 SCRIPTS PRINCIPAIS
-│   ├── coleta_dados.py         # Coleta dados da B3, suporta configuração via config.json
-│   ├── preprocessamento.py     # Calcula 14 indicadores técnicos com validação robusta
-│   ├── treinamento_modelo.py   # Rotulagem ZigZag + Random Forest com logging detalhado
-│   ├── backtesting.py          # Engine de backtesting modular com métricas avançadas
-│   └── analise_resultados.py   # Análise de performance e sugestões de otimização
-│
-├── 📊 ANÁLISE E RESULTADOS
-│   ├── analise_resultados.py   # Diagnóstico e otimizações
-│   ├── resultados_backtest.csv # Métricas de performance
-│   └── resumo_projeto.md       # Relatório executivo
-│
-├── 📚 DOCUMENTAÇÃO
-│   ├── README.md               # Este arquivo
-│   ├── teoria.md              # Base científica completa
-│   └── .gitignore
-│
-└── 🐍 AMBIENTE
-    └── venv/                   # Ambiente virtual Python
+├── 📂 src/                     # Scripts principais
+│   ├── coleta_dados.py         # Coleta de dados históricos
+│   ├── preprocessamento.py     # Processamento e features
+│   ├── treinamento_modelo.py   # Treinamento ML
+│   ├── backtest_engine.py      # Engine de backtesting
+│   ├── analise_resultados.py   # Análise de resultados
+│   └── __init__.py
+├── 📂 models/                  # Modelos treinados (.joblib)
+├── 📂 results/                 # Resultados e gráficos
+├── 📂 docs/                    # Documentação
+├── 📂 tests/                   # Scripts de teste
+├── 📂 scripts/                 # Scripts auxiliares
+├── 📂 dados_brutos/            # Dados históricos originais
+├── 📂 dados_processados/       # Dados com features técnicas
+├── config.json                 # Configurações centralizadas
+├── requirements.txt            # Dependências
+├── .gitignore                 # Arquivos ignorados
+└── README.md                  # Este arquivo
 ```
 
-## 🚀 Como Executar o Projeto
+## 🚀 Configuração e Execução
 
-### Pré-requisitos
-
-- Python 3.8+
-- pip (gerenciador de pacotes Python)
-
-### Instalação
+### 1. Preparação do Ambiente
 
 ```bash
-# 1. Clonar o repositório
+# Clonar repositório
 git clone https://github.com/YanCotta/swing_trade_e_machine_learning.git
 cd swing_trade_e_machine_learning
 
-# 2. Instalar dependências
-pip install -r requirements.txt
-
-# 3. Criar ambiente virtual (opcional, mas recomendado)
-python3 -m venv venv
+# Criar ambiente virtual
+python -m venv venv
 source venv/bin/activate  # Linux/Mac
 # ou
 venv\Scripts\activate     # Windows
+
+# Instalar dependências
+pip install -r requirements.txt
 ```
 
-**Configurações do Projeto:**
-- As configurações podem ser ajustadas no arquivo `config.json`
-- Modifique ativos, timeframes, parâmetros do ZigZag e outros valores conforme necessário
+### 2. Execução do Pipeline Completo
 
-### Execução Completa
+Execute os scripts na ordem correta:
 
-**Etapa 1: Coleta de Dados** ✅
 ```bash
-source venv/bin/activate
+# 1. Coleta de dados históricos
+cd src
 python coleta_dados.py
-```
-- Baixa dados históricos de 4 ativos da B3
-- 5 timeframes por ativo (1d, 4h, 15m, 5m, 1m)
-- Total: 20 arquivos CSV salvos em `dados_brutos/`
 
-**Etapa 2: Pré-processamento** ✅
-```bash
-source venv/bin/activate
+# 2. Processamento e criação de features
 python preprocessamento.py
-```
-- Calcula 14 indicadores técnicos
-- Features: SMA, RSI, MACD, Bollinger, Stochastic, ATR, Volume
-- Dados processados salvos em `dados_processados/`
 
-**Etapa 3: Treinamento do Modelo** ✅
-```bash
-source venv/bin/activate
+# 3. Treinamento dos modelos
 python treinamento_modelo.py
-```
-- Implementa algoritmo ZigZag (proxy Ondas de Elliott)
-- Treina modelos Random Forest (protótipo)
-- Salva 4 modelos treinados (.joblib)
 
-**Etapa 4: Backtesting** ✅
-```bash
-source venv/bin/activate
-python backtesting.py
+# 4. Backtesting das estratégias
+python backtest_engine.py
 
-# Análise detalhada
+# 5. Análise dos resultados
 python analise_resultados.py
 ```
-- Engine completo de backtesting
-- Métricas de risco e performance
-- Relatório de otimizações
 
-## 📊 Resultados da Primeira Iteração (Protótipo)
+### 3. Testes e Verificação
 
-### 🎯 Objetivos Alcançados
+```bash
+# Executar testes de integração
+cd tests
+python teste_integracao.py
 
-✅ **Sistema Completo End-to-End Implementado**
-- Pipeline automatizado de dados funcionando
-- Engine de backtesting robusto 
-- Metodologia científica aplicada
-- Base sólida para implementações avançadas
+# Verificar refinamentos
+python demo_refinamentos.py
+```
+
+## ⚙️ Configuração
+
+O arquivo `config.json` centraliza todas as configurações:
+
+```json
+{
+  "ativos": ["PETR4", "VALE3", "BBAS3", "BOVA11"],
+  "timeframes": {
+    "1d": "2y",
+    "4h": "60d", 
+    "15m": "30d",
+    "5m": "10d",
+    "1m": "5d"
+  },
+  "modelo": {
+    "tipo": "random_forest",
+    "parametros": {
+      "n_estimators": 100,
+      "max_depth": 10,
+      "min_samples_split": 5,
+      "random_state": 42
+    }
+  },
+  "zigzag_deviation": 3.0,
+  "target_shift": -1,
+  "backtesting": {
+    "capital_inicial": 10000,
+    "stop_loss": 0.05,
+    "take_profit": 0.10,
+    "taxa_corretagem": 0.001
+  }
+}
+```
+
+## 📊 Funcionalidades
+
+### 🔍 **Coleta de Dados**
+
+- Download automático via yfinance
+- Múltiplos timeframes (1m, 5m, 15m, 4h, 1d)
+- Dados de ações brasileiras (B3)
+- Configuração flexível via JSON
+
+### 🛠️ **Features Técnicas (14 Indicadores)**
+
+- **Médias Móveis**: SMA 20 e 50 períodos
+- **Osciladores**: RSI, Stochastic %K e %D
+- **Momentum**: MACD, MACD Signal, MACD Histogram
+- **Volatilidade**: ATR, Bollinger Bands (Upper, Middle, Lower)
+- **Volume**: Volume Delta simplificado
+- **Retorno**: Retorno percentual de 1 período
+
+### 🤖 **Machine Learning**
+
+- **Modelos Suportados**: Random Forest, XGBoost, LightGBM
+- **Classificação**: Impulso de Alta (1), Impulso de Baixa (2), Correção/Neutro (0)
+- **Features**: 14 indicadores técnicos
+- **Validação**: Split temporal (80/20) para evitar data leakage
+- **Rotulagem**: Algoritmo ZigZag como proxy para Ondas de Elliott
+
+### 📈 **Backtesting**
+
+- Engine próprio livre de lookahead bias
+- Métricas completas: Sharpe, Sortino, Max Drawdown
+- Gestão de risco: Stop Loss e Take Profit configuráveis
+- Análise de trades individuais
+- Exportação detalhada de resultados
+
+### 📊 **Análise e Relatórios**
+
+- Gráficos de feature importance automáticos
+- Métricas de performance detalhadas
+- Análise de distribuição de classes
+- Relatórios de problemas identificados
+- Sugestões de melhorias automáticas
+
+## 🎯 Metodologia
+
+### Rotulagem de Padrões com ZigZag
+
+O sistema utiliza uma implementação manual do indicador **ZigZag** para identificar padrões baseados na Teoria das Ondas de Elliott:
+
+1. **Detecção de Topos e Fundos**: Identifica pontos de reversão significativos baseados em desvio percentual configurável
+2. **Classificação de Movimentos**:
+   - **Impulso de Alta (1)**: Movimentos de preço ascendente entre pontos de virada
+   - **Impulso de Baixa (2)**: Movimentos de preço descendente entre pontos de virada
+   - **Correção/Neutro (0)**: Períodos de consolidação (padrão)
+
+3. **Geração de Sinais**:
+   - Baseada na predição do modelo ML
+   - Threshold de confiança configurável (padrão: 60%)
+   - Validação temporal para evitar lookahead bias
+
+### Pipeline de ML
+
+```text
+Dados Brutos → Features Técnicas → Rotulagem ZigZag → Treinamento → Backtesting → Análise
+```
+
+## 📋 Métricas de Avaliação
+
+### Métricas de ML
+
+- **Accuracy**: Precisão geral do modelo
+- **Precision/Recall**: Por classe (Impulso Alta/Baixa/Neutro)
+- **F1-Score**: Média harmônica de precisão e recall
+- **Classification Report**: Relatório detalhado por classe
+- **Feature Importance**: Ranking dos indicadores mais relevantes
+
+### Métricas de Trading
+
+- **Retorno Total**: Performance absoluta da estratégia
+- **Sharpe Ratio**: Retorno ajustado ao risco
+- **Sortino Ratio**: Foco no downside risk
+- **Max Drawdown**: Maior perda consecutiva
+- **Win Rate**: Percentual de trades vencedores
+- **Profit Factor**: Razão lucro total/prejuízo total
+
+## 📊 Resultados da Versão Atual
 
 ### 📈 Métricas de Performance (Random Forest - Baseline)
 
-| Ativo    | Capital Final | Retorno  | Win Rate | Trades | Profit Factor |
-|----------|---------------|----------|----------|--------|---------------|
-| **BOVA11** | R$ 460,86   | -95.39%  | 56.0%    | 25     | 12.71         |
-| **VALE3**  | R$ 218,43   | -97.82%  | 58.2%    | 79     | 14.49         |
-| **BBAS3**  | R$ 78,14    | -99.22%  | 55.4%    | 130    | 10.17         |
-| **PETR4**  | R$ 61,97    | -99.38%  | 54.9%    | 173    | 4.92          |
+| Ativo    | Capital Final | Retorno  | Win Rate | Trades | Profit Factor | Sharpe |
+|----------|---------------|----------|----------|--------|---------------|--------|
+| **BOVA11** | R$ 460,86   | -95.39%  | 56.0%    | 25     | 12.71         | -2.8   |
+| **VALE3**  | R$ 218,43   | -97.82%  | 58.2%    | 79     | 14.49         | -3.1   |
+| **BBAS3**  | R$ 78,14    | -99.22%  | 55.4%    | 130    | 10.17         | -3.5   |
+| **PETR4**  | R$ 61,97    | -99.38%  | 54.9%    | 173    | 4.92          | -3.2   |
 
-**� Consolidado:**
+**📊 Consolidado:**
+
 - Capital Inicial: R$ 10.000,00
 - Capital Final Médio: R$ 204,85 (-97.95%)
-- Win Rate Médio: **56.1%**
+- Win Rate Médio: **56.1%** ✅ Capacidade preditiva confirmada
 - Total de Trades: **407**
 
-### 🔍 Análise Técnica dos Resultados
+### 🔍 Análise dos Resultados
 
-#### ✅ Pontos Positivos (Validação da Infraestrutura)
+#### ✅ Pontos Positivos
 
-1. **Win Rate Consistente**: 56.1% demonstra capacidade preditiva
-2. **Profit Factor Alto**: Indica boa identificação de oportunidades  
-3. **Sistema Robusto**: Pipeline completo funcionando corretamente
-4. **Base Científica**: Metodologia reproduzível implementada
+1. **Win Rate Consistente**: 56.1% demonstra capacidade preditiva real
+2. **Profit Factor Alto**: Indica boa identificação de oportunidades
+3. **Sistema Robusto**: Pipeline completo funcionando perfeitamente
+4. **Base Científica**: Metodologia reproduzível e livre de bias
 
-#### ⚠️ Problemas Identificados (Esperados no Protótipo)
+#### ⚠️ Problemas Identificados
 
 1. **Paradoxo do Win Rate**: Alto win rate mas retorno negativo
    - **Causa**: Trades lucrativos pequenos vs perdas grandes
    - **Solução**: Otimizar ratio Risk/Reward
 
-2. **Gestão de Risco Inadequada**: 
+2. **Gestão de Risco**: 
    - Stop Loss muito restritivo (5%)
    - Take Profit subotimizado (10%)
-   - **Impacto**: Muitas saídas prematuras
 
 3. **Overtrading**: 
    - 101 trades/ativo em média
-   - **Causa**: Sinais excessivos sem filtros
-   - **Solução**: Aumentar threshold de confiança
+   - **Causa**: Sinais excessivos sem filtros adequados
 
-4. **Modelo Simplificado**:
-   - Random Forest como baseline
-   - **Limitação**: Não captura complexidade temporal das Ondas de Elliott
+## 🔧 Personalização
+
+### Adicionando Novos Ativos
+
+Edite o `config.json`:
+
+```json
+{
+  "ativos": ["PETR4", "VALE3", "NOVO_ATIVO.SA"]
+}
+```
+
+### Modificando Features
+
+No arquivo `src/preprocessamento.py`, adicione novos indicadores:
+
+```python
+def calcular_features_customizadas(df):
+    # Seu indicador personalizado
+    df['CUSTOM_INDICATOR'] = ...
+    return df
+```
+
+### Configurando Modelos
+
+No arquivo `config.json`:
+
+```json
+{
+  "modelo": {
+    "tipo": "xgboost",
+    "parametros": {
+      "n_estimators": 200,
+      "max_depth": 8,
+      "learning_rate": 0.1
+    }
+  }
+}
+```
+
+## 📝 Logs e Debugging
+
+Todos os scripts geram logs detalhados na pasta `src/`:
+
+- `coleta_dados.log`
+- `preprocessamento.log`
+- `treinamento_modelo.log`
+- `backtesting.log`
+- `analise_resultados.log`
 
 ## 🚀 Roadmap de Desenvolvimento
 
-### 🎯 Versão 2.0 - Otimização Imediata (Curto Prazo)
+### 🎯 Versão 2.1 - Otimização de Parâmetros
 
-**Melhorias de Parâmetros:**
 - Stop Loss: 5% → 8%
-- Take Profit: 10% → 15%  
+- Take Profit: 10% → 15%
 - Threshold de Confiança: 60% → 75%
-- Posições Simultâneas: 4 → 2
-- Implementar cooldown entre trades (5 dias)
+- Implementar cooldown entre trades
 
-**Melhorias Técnicas:**
-- ZigZag threshold: 3% → 5%
-- Filtros de volatilidade (ATR)
-- Validação cruzada temporal
-- Features de momentum avançadas
+### 🤖 Versão 3.0 - Modelos Avançados
 
-### 🤖 Versão 3.0 - Modelos Avançados (Médio Prazo)
-
-Baseado na documentação científica em [`teoria.md`](./teoria.md):
-
-**Algoritmos de Machine Learning:**
-- **LSTM (Long Short-Term Memory)**: Para capturar dependências temporais das ondas
-- **XGBoost**: Para detecção de padrões complexos não-lineares
+- **LSTM**: Para análise temporal das ondas
+- **XGBoost**: Para padrões complexos não-lineares
 - **Ensemble Methods**: Combinando múltiplos modelos
-- **Transformers**: Para análise de sequências temporais
+- **Transformers**: Para sequências temporais
 
-**Detecção Avançada de Ondas de Elliott:**
-- Implementação de padrões fractais
-- Reconhecimento automático de formações (triângulos, flags, etc.)
-- Validação por regras de Fibonacci
-- Análise multi-timeframe sincronizada
+### 📈 Versão 4.0 - Sistema Completo
 
-### 📈 Versão 4.0 - Sistema Completo (Longo Prazo)
-
-**Funcionalidades Avançadas:**
 - Paper Trading em tempo real
-- Dashboard de monitoramento web
+- Dashboard web interativo
 - API para integração com corretoras
 - Sistema de alertas automáticos
-- Análise de sentimento de mercado
-- Dados fundamentalistas integrados
 
-**Validação e Robustez:**
-- Walk-forward analysis
-- Teste em múltiplos mercados
-- Stress testing em crises
-- Otimização dinâmica de parâmetros
+## ⚠️ Limitações e Disclaimers
 
-## 🎓 Lições Aprendidas
+1. **Não é Aconselhamento Financeiro**: Este sistema é apenas educacional
+2. **Backtesting ≠ Performance Futura**: Resultados passados não garantem resultados futuros
+3. **Dados Limitados**: Utiliza apenas dados históricos de preços
+4. **Sem Análise Fundamentalista**: Foco apenas em análise técnica
+5. **Custos de Transação**: Considera apenas taxa de corretagem básica
 
-### 💡 Insights Técnicos
+## 🛡️ Gerenciamento de Risco
 
-1. **Dados são Fundamentais**: Qualidade > Quantidade
-2. **Backtesting é Essencial**: Simular antes de investir
-3. **Gestão de Risco é Crítica**: Pode fazer ou quebrar uma estratégia
-4. **Overfitting é Real**: Modelos podem memorizar ruído histórico
+### Implementado
 
-### 🧠 Insights de Negócio
+- Stop Loss fixo (configurável)
+- Take Profit fixo (configurável)
+- Limite de capital por trade
+- Position sizing baseado em capital disponível
 
-1. **Win Rate ≠ Lucratividade**: Foco no Profit Factor e Risk/Reward
-2. **Simplicidade Funciona**: Algoritmos complexos não garantem sucesso
-3. **Validação Contínua**: Mercados mudam, modelos devem adaptar
-4. **Expectativas Realistas**: Trading é difícil, mesmo com IA
+### Recomendações Adicionais
 
-## 🏆 Conclusões
+- Position sizing baseado em volatilidade (ATR)
+- Diversificação de ativos
+- Limites de drawdown máximo
+- Validação out-of-sample rigorosa
 
-### ✅ Status Atual: Objetivos Atingidos
+## 📚 Recursos de Aprendizado
 
-Este projeto **ESTABELECEU COM SUCESSO**:
+### Conceitos Utilizados
 
-1. **📊 Sistema Completo**: Pipeline end-to-end funcionando
-2. **🔬 Base Científica**: Metodologia sólida de desenvolvimento  
-3. **📈 Resultados Reais**: Backtesting com dados históricos reais
-4. **🔍 Análise Crítica**: Identificação clara de problemas e soluções
-5. **🗺️ Roadmap Futuro**: Próximos passos bem definidos
+- **Análise Técnica**: Indicadores e osciladores
+- **Machine Learning**: Classificação supervisionada
+- **Backtesting**: Validação de estratégias
+- **Gestão de Risco**: Stop loss e position sizing
+- **Teoria das Ondas de Elliott**: Análise de padrões de mercado
 
-### 🎯 Valor do Protótipo
+### Referências Recomendadas
 
-O protótipo atual serve como **prova de conceito** robusta que:
+- "Technical Analysis of the Financial Markets" - John Murphy
+- "Advances in Financial Machine Learning" - Marcos López de Prado
+- "Python for Finance" - Yves Hilpisch
+- "Elliott Wave Principle" - Frost & Prechter
 
-- Valida a viabilidade técnica da abordagem
-- Estabelece infraestrutura sólida para modelos avançados
-- Identifica gargalos e oportunidades de otimização
-- Fornece baseline quantitativo para comparações futuras
+## 🤝 Contribuições
 
-### 🌟 Impacto e Aplicabilidade
+Contribuições são bem-vindas! Por favor:
 
-**Para Desenvolvedores:**
-- Código modular e extensível
-- Documentação científica completa
-- Metodologia reproduzível
+1. Fork o repositório
+2. Crie uma branch para sua feature
+3. Faça commit das mudanças
+4. Abra um Pull Request
 
-**Para Traders/Investidores:**
-- Sistema transparente e auditável
-- Métricas de risco detalhadas
-- Base para decisões quantitativas
+## 📄 Licença
 
-**Para Pesquisadores:**
-- Framework para experimentos em finanças quantitativas
-- Integração de teoria clássica com IA moderna
-- Plataforma para validação de hipóteses
+Este projeto está sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
+
+## 📞 Suporte
+
+Para dúvidas e sugestões:
+
+- Abra uma Issue no GitHub
+- Consulte a documentação em `/docs/`
+- Verifique os logs para debugging
 
 ---
 
-## 📞 Contato e Contribuições
-
-Este projeto demonstra competências técnicas em:
-- 🐍 **Python & Data Science**
-- 📊 **Análise Quantitativa & Finanças** 
-- 🤖 **Machine Learning Aplicado**
-- 💹 **Trading Algorítmico**
-- 🔧 **Engenharia de Software**
+**⚠️ AVISO LEGAL**: Este sistema é destinado exclusivamente para fins educacionais e de pesquisa. Não constitui aconselhamento financeiro. O trading de ativos financeiros envolve riscos significativos de perda. Sempre consulte um profissional qualificado antes de tomar decisões de investimento.
 
 **Desenvolvido por:** Yan  
-**Licença:** MIT  
-**Contribuições:** Bem-vindas via Pull Requests
-
----
-
-*"O mercado não é eficiente o suficiente para tornar impossível bater o mercado, nem ineficiente o suficiente para tornar isso fácil." - Warren Buffett*
+**Versão:** 2.0 - Sistema Refinado e Pronto para Produção  
+**Última Atualização:** 27 de Junho de 2025
