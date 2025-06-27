@@ -23,7 +23,7 @@ A documentação inclui:
 - Princípios de risk management quantitativo
 - Referências acadêmicas e científicas
 
-**⚠️ Nota Importante**: Os modelos atuais são implementações de exemplo para demonstração do pipeline completo. **Na próxima fase do projeto**, os modelos serão completamente redesenhados seguindo rigorosamente os princípios teóricos e metodologias acadêmicas documentadas em [`docs/teoria.md`](docs/teoria.md), resultando em modelos significativamente mais robustos e otimizados para performance real de trading.
+**⚠️ Nota Importante**: Os modelos atuais são implementações de exemplo para demonstração do pipeline completo. **Na próxima fase do projeto**, os modelos serão completamente redesenhados seguindo rigorosamente os princípios teóricos e metodologias acadêmicas documentadas em [`docs/teoria.md`](docs/teoria.md), resultando em modelos significativamente mais robustos e otimizados para performance real de trading. Os modelos atuais estão com péssimo desempenho, e só serviram para demonstrar a pipeline completa.
 
 **🚀 Próximas Implementações Baseadas na Teoria Acadêmica:**
 - Algoritmos avançados de machine learning validados pela literatura científica
