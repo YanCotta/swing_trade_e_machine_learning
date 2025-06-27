@@ -12,78 +12,97 @@ import pandas as pd
 import numpy as np
 import joblib
 import os
+import logging
 from datetime import datetime
 
-def analisar_resultados():
-    """Analisa os resultados do backtesting"""
-    print("=" * 70)
-    print("ANÁLISE DETALHADA DOS RESULTADOS")
-    print("=" * 70)
+# Configuração do logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('analise_resultados.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+def carregar_resultados():
+    """
+    Carrega os resultados do backtesting.
     
-    # Carregar resultados
+    Returns:
+        DataFrame or None: DataFrame com resultados ou None se não encontrado
+    """
     if not os.path.exists('resultados_backtest.csv'):
-        print("❌ Arquivo de resultados não encontrado!")
-        return
+        logger.error("Arquivo de resultados não encontrado!")
+        logger.info("Execute primeiro o script: python backtesting.py")
+        return None
     
-    df_resultados = pd.read_csv('resultados_backtest.csv')
+    try:
+        df_resultados = pd.read_csv('resultados_backtest.csv')
+        logger.info(f"Resultados carregados: {len(df_resultados)} ativos")
+        return df_resultados
+    except Exception as e:
+        logger.error(f"Erro ao carregar resultados: {e}")
+        return None
+
+def analisar_problemas(df_resultados):
+    """
+    Analisa os problemas identificados nos resultados.
     
-    print("📊 RESUMO DOS RESULTADOS:")
-    print(df_resultados.to_string(index=False))
-    print()
-    
-    print("🔍 ANÁLISE DOS PROBLEMAS IDENTIFICADOS:")
-    print()
+    Args:
+        df_resultados (DataFrame): DataFrame com resultados do backtesting
+    """
+    logger.info("🔍 ANÁLISE DOS PROBLEMAS IDENTIFICADOS:")
     
     # Problema 1: Win Rate vs Retorno
-    print("1️⃣ PARADOXO DO WIN RATE:")
-    print("   • Win Rate médio: 56.1% (bom)")
-    print("   • Retorno médio: -97.95% (muito ruim)")
-    print("   ➡️ Conclusão: Trades lucrativos pequenos, trades perdedores grandes")
-    print()
+    logger.info("1️⃣ PARADOXO DO WIN RATE:")
+    win_rate_medio = df_resultados['win_rate'].mean() * 100
+    retorno_medio = df_resultados['retorno_total'].mean() * 100
+    
+    logger.info(f"   • Win Rate médio: {win_rate_medio:.1f}% (bom)")
+    logger.info(f"   • Retorno médio: {retorno_medio:+.2f}% (muito ruim)")
+    logger.info("   ➡️ Conclusão: Trades lucrativos pequenos, trades perdedores grandes")
     
     # Problema 2: Stop Loss muito restritivo
-    print("2️⃣ GESTÃO DE RISCO:")
-    print("   • Stop Loss atual: 5%")
-    print("   • Take Profit atual: 10%")
-    print("   • Profit Factor alto mas resultado negativo")
-    print("   ➡️ Conclusão: Muitos stop losses sendo ativados")
-    print()
+    logger.info("2️⃣ GESTÃO DE RISCO:")
+    logger.info("   • Stop Loss atual: 5%")
+    logger.info("   • Take Profit atual: 10%")
+    logger.info("   • Profit Factor alto mas resultado negativo")
+    logger.info("   ➡️ Conclusão: Muitos stop losses sendo ativados")
+def propor_melhorias():
+    """
+    Propõe melhorias baseadas na análise dos resultados.
+    """
+    logger.info("💡 PROPOSTAS DE MELHORIA:")
     
-    # Problema 3: Overtrading
-    print("3️⃣ FREQUÊNCIA DE TRADES:")
-    total_trades = df_resultados['total_trades'].sum()
-    print(f"   • Total de trades: {total_trades}")
-    print(f"   • Média por ativo: {total_trades/4:.1f} trades")
-    print("   ➡️ Conclusão: Possível overtrading (muitos sinais)")
-    print()
+    logger.info("1️⃣ AJUSTAR PARÂMETROS DE RISCO:")
+    logger.info("   • Aumentar Stop Loss para 8-10%")
+    logger.info("   • Aumentar Take Profit para 15-20%")
+    logger.info("   • Melhorar ratio risk/reward")
     
-    print("💡 PROPOSTAS DE MELHORIA:")
-    print()
-    print("1️⃣ AJUSTAR PARÂMETROS DE RISCO:")
-    print("   • Aumentar Stop Loss para 8-10%")
-    print("   • Aumentar Take Profit para 15-20%")
-    print("   • Melhorar ratio risk/reward")
-    print()
-    print("2️⃣ FILTRAR SINAIS:")
-    print("   • Aumentar threshold de confiança (0.6 → 0.75)")
-    print("   • Adicionar filtros de volatilidade")
-    print("   • Considerar contexto de tendência")
-    print()
-    print("3️⃣ OTIMIZAR ALGORITMO ZIGZAG:")
-    print("   • Testar diferentes thresholds (3% → 5%)")
-    print("   • Validar padrões Elliott mais rigorosamente")
-    print("   • Adicionar confirmação técnica")
-    print()
-    print("4️⃣ MELHORAR FEATURES:")
-    print("   • Adicionar indicadores de momento")
-    print("   • Incluir análise de volume")
-    print("   • Considerar correlação entre ativos")
+    logger.info("2️⃣ FILTRAR SINAIS:")
+    logger.info("   • Aumentar threshold de confiança (0.6 → 0.75)")
+    logger.info("   • Adicionar filtros de volatilidade")
+    logger.info("   • Considerar contexto de tendência")
+    
+    logger.info("3️⃣ OTIMIZAR ALGORITMO ZIGZAG:")
+    logger.info("   • Testar diferentes thresholds (3% → 5%)")
+    logger.info("   • Validar padrões Elliott mais rigorosamente")
+    logger.info("   • Adicionar confirmação técnica")
+    
+    logger.info("4️⃣ MELHORAR FEATURES:")
+    logger.info("   • Adicionar indicadores de momento")
+    logger.info("   • Incluir análise de volume")
+    logger.info("   • Considerar correlação entre ativos")
 
 def criar_backtest_otimizado():
-    """Cria versão otimizada do backtesting"""
-    print("\n" + "=" * 70)
-    print("CRIANDO VERSÃO OTIMIZADA DO BACKTESTING")
-    print("=" * 70)
+    """
+    Cria versão otimizada do backtesting.
+    """
+    logger.info("=" * 70)
+    logger.info("CRIANDO VERSÃO OTIMIZADA DO BACKTESTING")
+    logger.info("=" * 70)
     
     # Parâmetros otimizados
     config_otimizada = {
@@ -194,18 +213,68 @@ def gerar_recomendacoes():
     print("3. Implementar paper trading em tempo real")
     print("4. Desenvolver dashboard de monitoramento")
 
+def analisar_resultados():
+    """
+    Função principal para análise completa dos resultados.
+    
+    Returns:
+        bool: True se análise foi executada com sucesso
+    """
+    # Carregar resultados
+    df_resultados = carregar_resultados()
+    if df_resultados is None:
+        return False
+    
+    logger.info("📊 RESUMO DOS RESULTADOS:")
+    logger.info(f"\n{df_resultados.to_string(index=False)}")
+    
+    # Analisar problemas
+    analisar_problemas(df_resultados)
+    
+    # Analisar frequência de trades
+    logger.info("3️⃣ FREQUÊNCIA DE TRADES:")
+    total_trades = df_resultados['total_trades'].sum()
+    logger.info(f"   • Total de trades: {total_trades}")
+    logger.info(f"   • Média por ativo: {total_trades/len(df_resultados):.1f} trades")
+    logger.info("   ➡️ Conclusão: Possível overtrading (muitos sinais)")
+    
+    # Propor melhorias
+    propor_melhorias()
+    
+    return True
+
 def main():
-    """Função principal da análise"""
-    print(f"Início da análise: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print()
+    """
+    Função principal do script de análise.
+    """
+    logger.info("=" * 70)
+    logger.info("ANÁLISE DETALHADA DOS RESULTADOS")
+    logger.info("=" * 70)
     
-    # Executar análises
-    analisar_resultados()
-    config_otimizada = criar_backtest_otimizado()
-    analisar_modelos()
-    gerar_recomendacoes()
+    inicio = datetime.now()
+    logger.info(f"Início da análise: {inicio.strftime('%Y-%m-%d %H:%M:%S')}")
     
-    print(f"\nFim da análise: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    # Executar análise
+    sucesso = analisar_resultados()
+    
+    if sucesso:
+        # Executar análises adicionais
+        criar_backtest_otimizado()
+        
+        # Gerar configuração otimizada
+        logger.info("📝 CONFIGURAÇÃO OTIMIZADA RECOMENDADA:")
+        logger.info("   • Stop Loss: 8%")
+        logger.info("   • Take Profit: 15%")
+        logger.info("   • Threshold de confiança: 75%")
+        logger.info("   • ZigZag deviation: 5%")
+        logger.info("   • Máximo de posições: 2")
+    
+    fim = datetime.now()
+    duracao = fim - inicio
+    
+    logger.info(f"Fim da análise: {fim.strftime('%Y-%m-%d %H:%M:%S')}")
+    logger.info(f"Duração: {duracao}")
+    logger.info("=" * 70)
 
 if __name__ == "__main__":
     main()
