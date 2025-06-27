@@ -1,7 +1,26 @@
 # 🎯 Sistema de Swing Trading com Machine Learning e Ondas de Elliott
 
 **Projeto:** Sistema completo de trading algorítmico baseado em IA  
-**Status:** ✅ **PROTOTIPO INICIAL CONCLUÍDO**  
+**Status:** ✅ **PROTOTI**📊 Consolidado:**
+- Capital Inicial: R$ 10.000,00
+- Capital Final Médio: R$ 204,85 (-97.95%)
+- Win Rate Médio: **56.1%**
+- Total de Trades: **407**
+
+### 📊 Feature Importance - Indicadores Mais Relevantes
+
+![Feature Importance](./feature_importance_PETR4_1d.png)
+
+*Gráfico mostrando a importância dos indicadores técnicos para as previsões do modelo Random Forest. Os indicadores são ordenados por relevância, onde valores mais altos indicam maior influência nas decisões do modelo.*
+
+**Top 5 Indicadores Mais Importantes:**
+1. **ATR (Average True Range)** - Medida de volatilidade
+2. **RSI (Relative Strength Index)** - Força relativa do movimento
+3. **MACD** - Convergência/divergência de médias móveis
+4. **Volume Delta** - Pressão compradora vs vendedora
+5. **Bollinger Bands** - Bandas de volatilidade
+
+### 🔍 Análise Técnica dos ResultadosIAL CONCLUÍDO**  
 **Próxima Fase:** Implementação de modelos avançados  
 
 ---
@@ -53,10 +72,11 @@ swing_trade_e_machine_learning/
 │   └── modelo_VALE3_1d.joblib  # Random Forest (protótipo)
 │
 ├── 🔧 SCRIPTS PRINCIPAIS
-│   ├── coleta_dados.py         # Etapa 1: Coleta de dados da B3
-│   ├── preprocessamento.py     # Etapa 2: Indicadores técnicos
-│   ├── treinamento_modelo.py   # Etapa 3: ML + Ondas de Elliott
-│   └── backtesting.py          # Etapa 4: Validação da estratégia
+│   ├── coleta_dados.py         # Coleta dados da B3, suporta configuração via config.json
+│   ├── preprocessamento.py     # Calcula 14 indicadores técnicos com validação robusta
+│   ├── treinamento_modelo.py   # Rotulagem ZigZag + Random Forest com logging detalhado
+│   ├── backtesting.py          # Engine de backtesting modular com métricas avançadas
+│   └── analise_resultados.py   # Análise de performance e sugestões de otimização
 │
 ├── 📊 ANÁLISE E RESULTADOS
 │   ├── analise_resultados.py   # Diagnóstico e otimizações
@@ -86,15 +106,19 @@ swing_trade_e_machine_learning/
 git clone https://github.com/YanCotta/swing_trade_e_machine_learning.git
 cd swing_trade_e_machine_learning
 
-# 2. Criar ambiente virtual
+# 2. Instalar dependências
+pip install -r requirements.txt
+
+# 3. Criar ambiente virtual (opcional, mas recomendado)
 python3 -m venv venv
 source venv/bin/activate  # Linux/Mac
 # ou
 venv\Scripts\activate     # Windows
-
-# 3. Instalar dependências
-pip install yfinance pandas numpy scikit-learn joblib setuptools
 ```
+
+**Configurações do Projeto:**
+- As configurações podem ser ajustadas no arquivo `config.json`
+- Modifique ativos, timeframes, parâmetros do ZigZag e outros valores conforme necessário
 
 ### Execução Completa
 
