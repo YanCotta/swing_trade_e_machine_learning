@@ -198,55 +198,6 @@ As duas abordagens de machine learning oferecem caminhos distintos para a análi
   * **Prós:** É objetiva e orientada pelos dados, descobrindo padrões que realmente existem na série temporal e evitando o viés humano. Com o uso do DTW, é mais robusta a variações na forma e na duração dos padrões.  
   * **Contras:** Não produz diretamente rótulos preditivos; requer uma segunda etapa de interpretação humana para dar sentido aos clusters. É computacionalmente mais cara, especialmente com o DTW.
 
-### **4.2 Roteiro para uma Apresentação de Impacto**
-
-Este roteiro detalhado, slide a slide, foi projetado para ajudar o grupo a estruturar uma apresentação clara, lógica e convincente.
-
-* **Slide 1: Título**  
-  * Título do Projeto: "Estratégias Algorítmicas para Swing Trade: Detecção de Padrões de Elliott com Machine Learning"  
-  * Nomes dos Integrantes do Grupo  
-  * Disciplina / Professor  
-* **Slide 2: Introdução e Definição do Problema**  
-  * O Desafio: Prever os mercados financeiros é notoriamente difícil.  
-  * A Teoria: A Teoria das Ondas de Elliott (TOE) oferece um modelo da psicologia do mercado.1  
-  * O Problema com a Teoria: É altamente subjetiva e difícil de aplicar consistentemente.9  
-  * Nosso Objetivo: Aplicar Machine Learning para trazer objetividade e testabilidade à TOE.  
-* **Slide 3: O que são as Ondas de Elliott? O Padrão 5-3**  
-  * Incluir um diagrama visual claro do padrão de 5 ondas de impulso e 3 ondas de correção.10  
-  * Explicar brevemente a psicologia: Impulso \= a favor da tendência; Correção \= contra a tendência.  
-* **Slide 4: As Regras do Jogo: Fractais e Fibonacci**  
-  * Listar as 3 regras invioláveis (Onda 2 \> 100% da 1; Onda 3 nunca é a mais curta; Onda 4 não sobrepõe a 1).9  
-  * Explicar o papel crucial das razões de Fibonacci para quantificar as relações entre as ondas e projetar alvos.15  
-* **Slide 5: O Desafio Central: A Subjetividade**  
-  * Mostrar um único gráfico de preços com duas contagens de ondas diferentes, mas plausíveis, lado a lado.  
-  * Citar: "Essa é uma das maiores críticas à Teoria das Ondas de Elliott".9  
-  * Este slide prepara o terreno para justificar a necessidade do Machine Learning.  
-* **Slide 6: Nossa Abordagem: Uma Análise de Dois Métodos**  
-  * Introduzir os dois paradigmas de ML explorados:  
-    1. **Aprendizado Supervisionado:** Ensinar a máquina com exemplos de especialistas.  
-    2. **Clustering Não Supervisionado:** Pedir à máquina para descobrir padrões por conta própria.  
-* **Slide 7: Método 1: Aprendizado Supervisionado (O "Professor Especialista")**  
-  * Explicar o processo: Rotular Dados → Engenharia de Características → Treinar Modelo (SVM/NN) → Prever.12  
-  * Destacar o principal desafio: O problema do "Garbage In, Garbage Out" devido à subjetividade dos rótulos.  
-* **Slide 8: Método 2: Clustering Não Supervisionado (O "Explorador de Dados")**  
-  * Explicar o processo: Pegar janelas de preço não rotuladas → Agrupá-las por similaridade de forma → Analisar os padrões resultantes.36  
-  * Enfatizar que esta abordagem evita o problema da rotulagem manual.  
-* **Slide 9: Aprofundamento Técnico: Clustering com DTW**  
-  * Mostrar uma animação ou diagrama simples comparando a Distância Euclidiana com o Dynamic Time Warping (DTW) (usar a Tabela 2 como referência).  
-  * Explicar por que o DTW é essencial para encontrar padrões que são "esticados" ou "comprimidos" no tempo.38  
-* **Slide 10: Nossa Implementação e Resultados (Seção para o grupo preencher)**  
-  * Apresentar os clusters que o grupo descobriu usando K-Means com DTW.  
-  * Mostrar o gráfico do centroide (padrão médio) para alguns dos clusters mais interessantes.  
-  * Interpretar os resultados: "O Cluster 1 parece ser uma onda de impulso clássica", "O Cluster 4 se assemelha a um padrão de correção lateral (flat)".  
-* **Slide 11: Discussão e Limitações**  
-  * Recapitular os prós e contras de cada método.  
-  * Discutir a fragilidade dos modelos e a necessidade de validação robusta (ex: teste walk-forward) para evitar overfitting.17  
-  * Reconhecer que estas são ferramentas de análise, não "bolas de cristal".  
-* **Slide 12: Conclusão e Trabalhos Futuros**  
-  * O ML fornece uma estrutura poderosa para testar sistematicamente a TOE.  
-  * O clustering não supervisionado é um ponto de partida robusto e objetivo para a descoberta de padrões.  
-  * Trabalhos Futuros: Construir modelos preditivos baseados nos clusters descobertos; testar em mais ativos e condições de mercado; explorar modelos híbridos.  
-* **Slide 13: Perguntas e Respostas**
 
 ### **4.3 Um Caminho Prático a Seguir: Estratégia de Implementação**
 
