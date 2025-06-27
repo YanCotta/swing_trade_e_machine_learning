@@ -1,6 +1,6 @@
 # Estratégias Algorítmicas para Swing Trade Baseadas em Machine Learning
 
-Este é um sistema completo (PROTÓTIPO) de trading algorítmico que utiliza machine learning para identificar padrões de mercado e gerar sinais de compra/venda. O sistema foi desenvolvido com foco em **swing trading** utilizando análise técnica avançada e indicadores técnicos baseados na **Teoria de Ondas de Elliott**. O projeto é produto do Projeto de Iniciação Científica do Professor Daves Martins, do UniAcademia.
+Este é um sistema completo (PROTÓTIPO) de trading algorítmico que utiliza machine learning para identificar padrões de mercado e gerar sinais de compra/venda. O sistema está sendo desenvolvido com foco em **swing trading** utilizando análise técnica avançada e indicadores técnicos baseados na **Teoria de Ondas de Elliott** (foco do nosso grupo, grupo 1) e outras. O projeto é produto do Projeto de Iniciação Científica do Professor Daves Martins, do UniAcademia.
 
 Este projeto implementa estratégias de swing trading baseadas em **análise técnica quantitativa** e **machine learning**. A base científica inclui:
 
@@ -181,7 +181,7 @@ O arquivo `config.json` centraliza todas as configurações:
 }
 ```
 
-## 📊 Funcionalidades
+## 📊 Funcionalidades Inicais do Protótipo
 
 ### 🔍 **Coleta de Dados**
 
@@ -217,12 +217,11 @@ O arquivo `config.json` centraliza todas as configurações:
 
 ### 🎯 **Resultados de Performance**
 
-#### Sistema Totalmente Funcional ✅
+#### Sistema Totalmente Funcional ✅ (MODELOS EXEMPLARES COM TERRÍVEL DESEMPENHO!!!!)
 
 **Pipeline Completo Executado com Sucesso:**
 
 - **🔢 Total de Trades**: 437 operações executadas
-- **💰 Capital Final**: R$ 55.543,91 (de R$ 40.000 inicial)
 - **📊 Retorno Consolidado**: +38,86%
 - **🎯 Win Rate Médio**: 48,2%
 
@@ -235,8 +234,6 @@ O arquivo `config.json` centraliza todas as configurações:
 | **VALE3** | +22,72% | 128 | 50,8% | 1.33 | -47,96% |
 | **BBAS3** | +19,22% | 107 | 43,0% | 1.37 | -28,11% |
 
-**Status**: ✅ Sistema refinado e pronto para produção
-
 ### 📊 **Análise e Relatórios**
 
 - Gráficos de feature importance automáticos
@@ -245,9 +242,9 @@ O arquivo `config.json` centraliza todas as configurações:
 - Relatórios de problemas identificados
 - Sugestões de melhorias automáticas
 
-## 🎯 Metodologia
+## 🎯 Metodologia (AINDA SERÁ APRIMORADA COM OS ACHADOS) 
 
-### Rotulagem de Padrões com ZigZag
+### Rotulagem de Padrões com ZigZag (POR ENQUANTO)
 
 O sistema utiliza uma implementação manual do indicador **ZigZag** para identificar padrões baseados na Teoria das Ondas de Elliott:
 
@@ -302,7 +299,7 @@ Dados Brutos → Features Técnicas → Rotulagem ZigZag → Treinamento → Bac
 
 - Capital Inicial: R$ 10.000,00
 - Capital Final Médio: R$ 204,85 (-97.95%)
-- Win Rate Médio: **56.1%** ✅ Capacidade preditiva confirmada
+- Win Rate Médio: **56.1%** ✅ Capacidade preditiva confirmada (MAS PESSÍMO DESEMPENHO GERAL)
 - Total de Trades: **407**
 
 ### 🔍 Análise dos Resultados
