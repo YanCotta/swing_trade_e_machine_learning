@@ -1,0 +1,11 @@
+RESULTADOS DO BACKTEST - VALE3_1d
+==================================================
+
+ativo: VALE3_1d
+retorno_total: 0.0
+sharpe_ratio: nan
+max_drawdown: 0.0
+total_trades: 0
+win_rate: 0
+profit_factor: 0
+capital_final: 10000.0
