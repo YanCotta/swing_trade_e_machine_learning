@@ -481,6 +481,6 @@ Para dúvidas e sugestões:
 
 **⚠️ AVISO LEGAL**: Este sistema é destinado exclusivamente para fins educacionais e de pesquisa. Não constitui aconselhamento financeiro. O trading de ativos financeiros envolve riscos significativos de perda. Sempre consulte um profissional qualificado antes de tomar decisões de investimento.
 
-**Desenvolvido por:** Yan  
+**Desenvolvido por:** Grupo 1
 **Versão:** 2.0 - Sistema Refinado e Pronto para Produção  
 **Última Atualização:** 27 de Junho de 2025
