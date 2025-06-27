@@ -1,6 +1,6 @@
 # Estratégias Algorítmicas para Swing Trade Baseadas em Machine Learning
 
-Este é um sistema completo de trading algorítmico que utiliza machine learning para identificar padrões de mercado e gerar sinais de compra/venda. O sistema foi desenvolvido com foco em **swing trading** utilizando análise técnica avançada e indicadores técnicos baseados na **Teoria de Ondas de Elliott** 
+Este é um sistema completo (PROTÓTIPO) de trading algorítmico que utiliza machine learning para identificar padrões de mercado e gerar sinais de compra/venda. O sistema foi desenvolvido com foco em **swing trading** utilizando análise técnica avançada e indicadores técnicos baseados na **Teoria de Ondas de Elliott**. O projeto é produto do Projeto de Iniciação Científica do Professor Daves Martins, do UniAcademia.
 
 Este projeto implementa estratégias de swing trading baseadas em **análise técnica quantitativa** e **machine learning**. A base científica inclui:
 
