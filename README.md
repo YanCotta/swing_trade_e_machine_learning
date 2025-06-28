@@ -217,7 +217,7 @@ O arquivo `config.json` centraliza todas as configurações:
 
 ### 🎯 **Resultados de Performance**
 
-#### Sistema Totalmente Funcional ✅ (MODELOS EXEMPLARES COM TERRÍVEL DESEMPENHO!!!!)
+#### Sistema Totalmente Funcional ✅ (MODELOS USADOS DE EXEMPLO COM TERRÍVEL DESEMPENHO!!!!)
 
 **Pipeline Completo Executado com Sucesso:**
 
@@ -242,7 +242,7 @@ O arquivo `config.json` centraliza todas as configurações:
 - Relatórios de problemas identificados
 - Sugestões de melhorias automáticas
 
-## 🎯 Metodologia (AINDA SERÁ APRIMORADA COM OS ACHADOS) 
+## 🎯 Metodologia (AINDA SERÁ APRIMORADA COM OS ACHADOS DAS REFERÊNCIAS NO teoria.md) 
 
 ### Rotulagem de Padrões com ZigZag (POR ENQUANTO)
 
@@ -389,29 +389,6 @@ results/
 - Verifique `results/backtest_reports/` para análises individuais por ativo
 - Use `results/resultados_backtest.csv` para consolidação geral
 
-## 🚀 Roadmap de Desenvolvimento
-
-### 🎯 Versão 2.1 - Otimização de Parâmetros
-
-- Stop Loss: 5% → 8%
-- Take Profit: 10% → 15%
-- Threshold de Confiança: 60% → 75%
-- Implementar cooldown entre trades
-
-### 🤖 Versão 3.0 - Modelos Avançados
-
-- **LSTM**: Para análise temporal das ondas
-- **XGBoost**: Para padrões complexos não-lineares
-- **Ensemble Methods**: Combinando múltiplos modelos
-- **Transformers**: Para sequências temporais
-
-### 📈 Versão 4.0 - Sistema Completo
-
-- Paper Trading em tempo real
-- Dashboard web interativo
-- API para integração com corretoras
-- Sistema de alertas automáticos
-
 ## ⚠️ Limitações e Disclaimers
 
 1. **Não é Aconselhamento Financeiro**: Este sistema é apenas educacional
@@ -429,30 +406,6 @@ results/
 - Limite de capital por trade
 - Position sizing baseado em capital disponível
 
-### Recomendações Adicionais
-
-- Position sizing baseado em volatilidade (ATR)
-- Diversificação de ativos
-- Limites de drawdown máximo
-- Validação out-of-sample rigorosa
-
-## 📚 Recursos de Aprendizado
-
-### Conceitos Utilizados
-
-- **Análise Técnica**: Indicadores e osciladores
-- **Machine Learning**: Classificação supervisionada
-- **Backtesting**: Validação de estratégias
-- **Gestão de Risco**: Stop loss e position sizing
-- **Teoria das Ondas de Elliott**: Análise de padrões de mercado
-
-### Referências Recomendadas
-
-- "Technical Analysis of the Financial Markets" - John Murphy
-- "Advances in Financial Machine Learning" - Marcos López de Prado
-- "Python for Finance" - Yves Hilpisch
-- "Elliott Wave Principle" - Frost & Prechter
-
 ## 🤝 Contribuições
 
 Contribuições são bem-vindas! Por favor:
@@ -462,22 +415,10 @@ Contribuições são bem-vindas! Por favor:
 3. Faça commit das mudanças
 4. Abra um Pull Request
 
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
-
-## 📞 Suporte
-
-Para dúvidas e sugestões:
-
-- Abra uma Issue no GitHub
-- Consulte a documentação em `/docs/`
-- Verifique os logs para debugging
-
 ---
 
 **⚠️ AVISO LEGAL**: Este sistema é destinado exclusivamente para fins educacionais e de pesquisa. Não constitui aconselhamento financeiro. O trading de ativos financeiros envolve riscos significativos de perda. Sempre consulte um profissional qualificado antes de tomar decisões de investimento.
 
 **Desenvolvido por:** Grupo 1
-**Versão:** 2.0 - Sistema Refinado e Pronto para Produção  
+**Versão:** 1.0
 **Última Atualização:** 27 de Junho de 2025
